@@ -10,8 +10,9 @@ document.addEventListener("DOMContentLoaded",
   let tabla = document.querySelector("#artistasRelacionados").addEventListener("click", cargarTablaArtistas);
   let contenedor = document.querySelector(".contenedorTabla");
 
-  const url = "https://web-unicen.herokuapp.com/api/groups/EHernando/artistasRelacionados";
-
+const url = "https://web-unicen.herokuapp.com/api/groups/";
+const groupID = "EHernando";
+const collectionID = "artistasRelacionados"; 
 function cargarPagina(url) {
     fetch(url).
     then(response =>{
@@ -56,7 +57,7 @@ function sendData(){
       "contacto" : contacto,
     }
   };
-  fetch(url,
+  fetch(`${url}${groupID}/${collectionID}`,
    {
     "method": "POST",
     "headers": { "Content-Type": "application/json" },
@@ -77,7 +78,7 @@ function sendData(){
   });
   }
 function getData(){
-    fetch(url,
+    fetch(`${url}${groupID}/${collectionID}`,
      {
       method: "GET",
       mode: 'cors',
@@ -104,7 +105,7 @@ function getData(){
         }
         let botonEliminar = document.querySelectorAll('.eliminarArtista');
           for (let i = 0; i < botonEliminar.length; i++) {
-            botonEliminar[i].addEventListener("click", ()=>{ borrarArtista(botonEliminar[i].name)});
+            botonEliminar[i].addEventListener("click", ()=>{ borrarArtista(botonEliminar[i].name)});  
           }
     })
     .catch(e =>{
@@ -113,7 +114,7 @@ function getData(){
 }
 function borrarArtista(id) {
   console.log(id);
-  fetch(url+"/"+id,
+  fetch(`${url}${groupID}/${collectionID}/${id}`,
   {
     "method":"DELETE",
   }).then(response =>{
@@ -143,7 +144,7 @@ function sendDatax3() {
     }
   };
   for (var i = 0; i < 3; i++) {
-    fetch(url,
+    fetch(`${url}${groupID}/${collectionID}`,
       {
       "method": "POST",
       "headers": { "Content-Type": "application/json" },
@@ -179,16 +180,15 @@ function editarArtista(){
       "contacto" : contacto,
     }
   };
-  fetch(url + "/" + id,{
+  fetch(`${url}${groupID}/${collectionID}/${id}`,{
     "method": "PUT",
     "headers": { "Content-Type": "application/json" },
     "body": JSON.stringify(data)
-  }).then(r =>{
-    if(!r.ok){
+  }).then(response =>{
+    if(!response.ok){
       console.log("Error");      
-      alert(`Error ${r.status}`);
     }
-    return r.json();
+    return response.json();
   })
   .then( json => {
     console.log(json);
@@ -200,7 +200,7 @@ function editarArtista(){
 };
 
 function buscarArtista(){
-  fetch(url,
+  fetch(`${url}${groupID}/${collectionID}`,
   {
     method: "GET",
     mode: "cors",
