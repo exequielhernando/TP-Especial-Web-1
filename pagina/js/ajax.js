@@ -49,7 +49,10 @@ function sendData(){
   let nombre = document.querySelector(".artista").value;
   let pagina = document.querySelector(".pagina").value;
   let contacto = document.querySelector(".contacto").value;
-
+  if (nombre.length === 0 || pagina.length === 0 || contacto === 0) {
+    alert("Ingrese todos los datos necesarios");
+    return;
+  }
   let data = {
     "thing": {
       "nombre": nombre,
@@ -82,7 +85,8 @@ function getData(){
      {
       method: "GET",
       mode: 'cors',
-    }).then(response =>{
+    })
+    .then(response =>{
       if(!response.ok){
         console.log("error");
       }
@@ -91,7 +95,6 @@ function getData(){
     .then(json => {
       let pos = 1;
       contenedor = document.querySelector(".contenedorTabla");
-      console.log(json);
       for (let data of json.artistasRelacionados) {
         contenedor.innerHTML +=    `<tr> 
                                       <td>${pos}</td>
@@ -135,6 +138,10 @@ function sendDatax3() {
   let nombre = document.querySelector(".artista").value;
   let pagina = document.querySelector(".pagina").value;
   let contacto = document.querySelector(".contacto").value;
+  if (nombre.length === 0 || pagina.length === 0 || contacto === 0) {
+    alert("Ingrese todos los datos necesarios");
+    return;
+  }
   let contador = 0;
   let data = {
     "thing": {
@@ -172,7 +179,10 @@ function editarArtista(){
   let nombre = document.querySelector(".editarNombreArtista").value;
   let pagina = document.querySelector(".editarPagina").value;
   let contacto = document.querySelector(".editarContacto").value;
-  
+  if (id.length === 0 || nombre.length === 0 || pagina.length === 0 || contacto === 0) {
+    alert("Ingrese todos los datos necesarios");
+    return;
+  }
   let data = {
     "thing": {
       "nombre": nombre,
@@ -213,9 +223,12 @@ function buscarArtista(){
   .then(json =>{
     let pos = 1;
     let artistaBuscado = document.querySelector(".nombreArtista").value;
-
-    contenedor = document.querySelector(".contenedorTabla");
-    contenedor.innerHTML = "";
+    if(artistaBuscado.length === 0){
+      alert("Ingrese el nombre del artista que desea buscar");
+    }
+    else{
+      contenedor.innerHTML = "";
+    }
     console.log(json);
 
     for (let data of json.artistasRelacionados) {
@@ -232,6 +245,7 @@ function buscarArtista(){
         pos++;
       }
     }
+
     let botonEliminar = document.querySelectorAll('.eliminarArtista');
     for (let i = 0; i < botonEliminar.length; i++) {
       botonEliminar[i].addEventListener("click", ()=>{ borrarArtista(botonEliminar[i].name)});
