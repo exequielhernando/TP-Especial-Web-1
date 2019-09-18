@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Juego</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body class="" id="fondo">
+      <div class="titulo">
+      <h1>Juego de memoria</h1>
+    </div>
+    <div class="subtitulo">
+      <h2>Encuentra al gohan en Super Saiyajin</h2>
+    </div>
+    <div class="" id="ganaste">
+
+    </div>
+    <div class="tablero " id="tablero">
+      <div class="carta cuadrado-negro" id="0">
+        <input type="radio" name="seleccion" value="0">
+      </div>
+      <div class="carta cuadrado-negro" id="1">
+        <input type="radio" name="seleccion" value="1">
+      </div>
+      <div class="carta cuadrado-negro" id="2">
+        <input type="radio" name="seleccion" value="2">
+      </div>
+      <div class="carta cuadrado-negro" id="3">
+        <input type="radio" name="seleccion" value="3">
+      </div>
+      <div class="carta cuadrado-negro" id="4">
+        <input type="radio" name="seleccion" value="4">
+      </div>
+      <div class="carta cuadrado-negro" id="5">
+        <input type="radio" name="seleccion" value="5">
+      </div>
+      <div class="carta cuadrado-negro" id="6">
+        <input type="radio" name="seleccion" value="6">
+      </div>
+      <div class="carta cuadrado-negro" id="7">
+        <input type="radio" name="seleccion" value="7">
+      </div>
+    </div>
+    <div class="boton-comenzar">
+      <button type="button" id="comenzar" name="button">Comenzar</button>
+      <button type="button" id="elegirjugada" name="button">Elegir Jugada</button>
+    </div>
+
+    <div class="tablaResultado" >
+      <table>
+        <thead>
+            <tr>
+              <th>Numero de partidas</th>
+              <th>Aciertos Totales</th>
+              <th>Aciertos</th>
+              <th>Errores</th>
+            </tr>
+            <tr>
+              <th id="numeropartidas"></th>
+              <th id="resultadoaciertostotales"></th>
+              <th id="resultadoaciertos"></th>
+              <th id="resultadoerrores"></th>
+            </tr>
+        </thead>
+      </table>
+    </div>
+
+
+    <script type="text/javascript" src="js/juego.js">
+
+    </script>
+  </body>
+</html>

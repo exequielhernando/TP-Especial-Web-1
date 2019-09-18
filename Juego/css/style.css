@@ -1,0 +1,82 @@
+.titulo{
+  height: 100%;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 2em;
+  font-size-adjust: auto;
+  text-align: center;
+}
+.subtitulo{
+  height: 100%;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1em;
+  font-size-adjust: auto;
+  text-align: center;
+}
+.tablero.carta{
+   display: inline;
+
+}
+.carta{
+  float: left;
+  border: 1em lightblue solid;
+  height: 18em;
+  width: 18em;
+}
+.cuadrado-negro{
+  background-image: url("../images/cuadrado-negro.jpg");
+
+}
+.cartaSinMarca{
+  background-image: url("../images/gohan1.png");
+  background-size: cover;
+  background-color: solid;
+}
+.cartaConMarca{
+  background-image: url("../images/gohan2.png");
+  background-size: cover;
+  background: solid;
+}
+.fondoAcierto{
+  background-image: url("../images/gohan2.png");
+}
+.fondoError{
+  background-image: url("../images/gohan1.png");
+}
+.ganaste{
+  background-image: url("../images/ganaste.jpg");
+  position: relative ;
+  top: 50%;
+  left: 25%;
+  height: 38em;
+  width: 50%;
+  align-items: center;
+}
+
+.oculto {
+  display: none;
+}
+.boton-comenzar{
+  clear: both;
+  text-align: center;
+}
+button{
+  border: 3em;
+  font-size: 2em;
+  font-style: normal;
+  font-family: fantasy;
+  padding: 2em;
+}
+.tablaResultado{
+  margin: 0 auto;
+  padding: 1em;
+  height: 5em;
+  width: 18em;
+  background-color: lightblue;
+}
+table{
+  height: 5em;
+  width: 18em;
+  background-color: white;
+}
