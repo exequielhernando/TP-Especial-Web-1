@@ -21,7 +21,6 @@ function cargarPagina(url) {
         if (url === "html/artistasRelacionados.html"){
           document.querySelector(".enviarDatos").addEventListener("click", sendData);
           document.querySelector(".enviarDatosx3").addEventListener("click", sendDatax3);
-          document.querySelector(".editarArtista").addEventListener("click", editarArtista);
           document.querySelector(".buscarArtista").addEventListener("click", buscarArtista);
         }
       }
@@ -101,11 +100,15 @@ function getData(){
                                       <td>${data.thing.nombre}</td>
                                       <td>${data.thing.pagina}</td>
                                       <td>${data.thing.contacto}</td>
-                                      <td>${data._id}</td>
+                                      <td><button type='button' name='${data._id}' class='editarArtista'>Editar</button></td>
                                       <td><button type='button' name='${data._id}' class='eliminarArtista'>Eliminar</button></td>
                                     </tr>`;
         pos++;
         }
+        let botonEditar = document.querySelectorAll('.editarArtista');
+          for (let i =0; i< botonEditar.length; i++ ){            
+            botonEditar[i].addEventListener("click", () =>{ editarArtista(botonEditar[i].name)});
+          }
         let botonEliminar = document.querySelectorAll('.eliminarArtista');
           for (let i = 0; i < botonEliminar.length; i++) {
             botonEliminar[i].addEventListener("click", ()=>{ borrarArtista(botonEliminar[i].name)});  
@@ -174,8 +177,7 @@ function sendDatax3() {
   });
   }
 }
-function editarArtista(){
-  let id = document.querySelector(".id").value;
+function editarArtista(id){
   let nombre = document.querySelector(".editarNombreArtista").value;
   let pagina = document.querySelector(".editarPagina").value;
   let contacto = document.querySelector(".editarContacto").value;
@@ -223,6 +225,8 @@ function buscarArtista(){
   .then(json =>{
     let pos = 1;
     let artistaBuscado = document.querySelector(".nombreArtista").value;
+    artistaBuscado = artistaBuscado.toLowerCase();   
+
     if(artistaBuscado.length === 0){
       alert("Ingrese el nombre del artista que desea buscar");
     }
@@ -233,19 +237,23 @@ function buscarArtista(){
 
     for (let data of json.artistasRelacionados) {
       let artista = data.thing.nombre;
+      artista = artista.toLowerCase();      
       if ( artista === artistaBuscado) {
         contenedor.innerHTML += `<tr>
                                    <td>${pos}</td>
                                    <td>${data.thing.nombre}</td>
                                    <td>${data.thing.pagina}</td>
                                    <td>${data.thing.contacto}</td>
-                                   <td>${data._id}</td>
+                                   <td><button type='button' name='${data._id}' class='editarArtista'>Editar</button></td>
                                    <td><button type='button' name='${data._id}' class='eliminarArtista'>Eliminar</button></td>
                                   </tr>`;
         pos++;
       }
     }
-
+    let botonEditar = document.querySelectorAll('.editarArtista');
+    for (let i =0; i< botonEditar.length; i++ ){
+      botonEditar[i].addEventListener("click", () =>{ editarArtista(botonEditar[i].name)});
+    }
     let botonEliminar = document.querySelectorAll('.eliminarArtista');
     for (let i = 0; i < botonEliminar.length; i++) {
       botonEliminar[i].addEventListener("click", ()=>{ borrarArtista(botonEliminar[i].name)});
